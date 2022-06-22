@@ -106,13 +106,13 @@ function Home() {
         setActiveNavLink("My Account")
     }
     function toggleTheNavBar() {
-        setToggleNavBar(!toggleNavBar)
+        setToggleNavBar(!toggleNavBar);
     }
     return (
         <div>
             {/* <p>You are in the home page of the backend.</p> */}
             <Header page={"home"} email={email} toggleNavBar={toggleTheNavBar} goToAccount={goToAccount} />
-            <nav className={!toggleNavBar || window.innerWidth > "760" ? "primary-navigation display" : "primary-navigation hide"}>
+            <nav className={!toggleNavBar ? "primary-navigation display" : "primary-navigation hide"}>
                 <ul>
                     <li onClick={() => {
                         setActiveNavLink("My Account");
@@ -184,7 +184,7 @@ function Home() {
                                             setActiveResource(resourceTitle.replace(/_/g, " "));
                                             setViewResource(!viewResource);
                                             setIsResourceOpen(true)
-                                        }}>view</button>
+                                        }}>Toggle view</button>
                                         <button type="button" onClick={() => {
                                             setTitle(resourceTitle);
                                             setContent(resourceContent);
@@ -203,7 +203,7 @@ function Home() {
                     handleClose={togglePopup}
                 />}
             </div> */}
-                                <div className={activeResource === resourceTitle.replace(/_/g, " ") && viewResource ? "resource-content display" : "resource-content hide"} dangerouslySetInnerHTML={{ __html: resourceContent }}></div>
+                                <div className={activeResource === resourceTitle.replace(/_/g, " ") && viewResource ? "resource-content info display" : "resource-content info hide"} dangerouslySetInnerHTML={{ __html: resourceContent }}></div>
 
                             </div>
                         }

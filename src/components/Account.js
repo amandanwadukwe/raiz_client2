@@ -90,8 +90,14 @@ function Account(props) {
 
 
 
-                <button type="button" onClick={() => setShowAvatarChoices(true)}>Change avatar</button>
-                <button type="button" onClick={() => setShowPasswordInput(true)}>Change password</button>
+                <button type="button" onClick={() => {
+                    setShowAvatarChoices(true);
+                    setShowPasswordInput(false);
+                    }}>Change avatar</button>
+                <button type="button" onClick={() => {
+                    setShowPasswordInput(true);
+                    setShowAvatarChoices(false);
+                    }}>Change password</button>
                 <div className={showAvatarChoices ? "avatar-container display" : "avatar-container hide"}>
                     <div className="note">Double click to confirm your choice
                     </div>

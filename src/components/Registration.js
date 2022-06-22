@@ -21,6 +21,9 @@ function Registration(props) {
 
     //This function is triggered when the submit button for the registration form is clicked
     function handleRegisterSubmit(e) {
+        if(firstName.length === 0 || lastName.length === 0 || role.length === 0 || email.length === 0 || password.length === 0){
+            setErrMsg("Please fill all feilds")
+        } else {
         e.preventDefault();
         if (confirmPassword === password) {
             console.log("Passwords match");
@@ -49,6 +52,7 @@ function Registration(props) {
         } else {
             setErrMsg("Passwords do not match");
         }
+    }
         
     }
 
@@ -59,6 +63,7 @@ function Registration(props) {
 
     //This function handles Admin registration after the secret is entered
     function handleRegister(e) {
+       
         e.preventDefault();
         //Is this supposed to be a get or a post, woman?
         if (role === "Admin") {
@@ -139,8 +144,10 @@ function Registration(props) {
                 </form>
             </div>
             <div className={secretRequired ? "display" : "hide"}>
+                <div className="secret-header">
                 <img src={backImage} onClick={backToRegistrationForm} alt="go back to registrationform" /><span>Go back to registration form</span>
-                <span className="error-message">{secretErrorMsg}</span>
+                </div>
+                <span className={secretErrorMsg.length > 0 ? "error-message display" : "error-message hide"}>{secretErrorMsg}</span>
                 <form>
                     <label>Secret:<input type="password" onChange={(e) => setSecret(e.target.value)} value={secret} required /></label>
                     <button onClick={handleRegister} type="submit">Register</button>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 import useSound from 'use-sound';
@@ -15,12 +15,15 @@ function NoticeBoard(props) {
     const [message, setMessage] = useState("");
     const [isOpen, setIsOpen] = useState(false);
     const [popupMessage, setPopupMessage] = useState("");
+    const [referenceNumber, setReferenceNumber] = useState(0);
     const [play] = useSound(success);
   
-
-    axios.get("http://localhost:5000/notice")
+    useEffect(()=>{
+        axios.get("http://localhost:5000/notice")
         .then(res => setNotices(res.data))
         .catch(err => setNoticesError("There has been an error with loading the notices"))
+    }, [referenceNumber])
+   
 
     function publishNotice(e) {
         e.preventDefault();
@@ -67,8 +70,8 @@ function NoticeBoard(props) {
                 {/* All notice items are to be displayed here */}
                 <ul className="notice-list">
                     {
-                        notices.map(notice => {
-                            return (<li>
+                        notices.map((notice, index) => {
+                            return (<li className = {index >= referenceNumber && index <referenceNumber+3 ? "display" : "hide"}>
                                 <div className="notice">
                                     <h2>{notice.subject}</h2>
                                     <p>{notice.message}</p>
@@ -86,8 +89,21 @@ function NoticeBoard(props) {
                 </ul>
                 <h3>Add new notice</h3>
                 <div className="notice-list-control">
-                    <button type="button">Previous notices</button>
-                    <button type="button">More current notices</button>
+                    <button type="button" onClick={()=>{
+                        if(referenceNumber <= 0 ){
+                            setReferenceNumber(0)
+                        } else{
+                        setReferenceNumber(referenceNumber - 3)
+                        }
+                        }}>Previous notices</button>
+                    <button type="button" onClick={()=>{
+                        console.log("reference", referenceNumber)
+                        if(referenceNumber >= notices.length - 3){
+                            setReferenceNumber(notices.length - 3)
+                        } else{
+                        setReferenceNumber(referenceNumber + 3)
+                        }
+                        }}>More current notices</button>
                 </div>
             </div>
 

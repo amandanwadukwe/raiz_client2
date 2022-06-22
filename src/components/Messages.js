@@ -66,8 +66,8 @@ function Messages(props){
            if(recipient !== `${props.firstName} ${props.lastName}`)
            return  <div>
                <div className={activeRecipient === recipient ? "display" : "hide"}>
-                   <div>
-                       <img src={backBtn} alt="back-btn"/>
+                   <div className="chat-header">
+                       <img src={backBtn} onClick={()=> setActiveRecipient("")} className="back-btn" alt="Go back"/>
                        <h6>This is your chat with <u>{activeRecipient}</u></h6>
                    </div>
                 <div  className="message">
@@ -91,11 +91,11 @@ function Messages(props){
                 </div>
                 </div>
                 {/* className={messageView ? "display" : "hide"} */}
-                <div className="message-heading" onClick={() => {
+                <div className={activeRecipient.length === 0 ? "message-heading display" : "message-heading hide"} onClick={() => {
                     setActiveRecipient(recipient);
                     readMessages();
                 }}>
-                    <img className="avatar-in-message" src={wormy1} alt=""/>
+                    <img className="avatar-in-message avatar" src={wormy1} alt=""/>
                 <h1  className={unreadMessage ? "unread-message": ""}  >{recipient}<span> {unreadMessage ? "unread message": ""}</span></h1>
                
                </div>

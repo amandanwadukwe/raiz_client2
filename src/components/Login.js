@@ -8,6 +8,11 @@ function Login(props){
     const [errorMessage, setErrorMessage] = useState("");
 
     function handleLogin(e){
+        if(email.length === 0){
+            setErrorMessage("No email provided")
+        }else if(password.length === 0){
+            setErrorMessage("Password feild is empty")
+        } else {
         e.preventDefault();
 
         axios.post(`http://localhost:5000/user/${email}`, {
@@ -15,14 +20,17 @@ function Login(props){
             "password": password
         })
         .then(res => {
-            //console.log(res);
+           
             
             window.location.href = `http://localhost:3000/home/${email}`
         })
-        .catch(err => setErrorMessage(err.response.data));
+        .catch(err => {
+            if(err.response.data === undefined)
+                setErrorMessage("This account does not exist")});
+    }
         
     }
-console.log(props.isLogin)
+
     return(
         <div className={props.isLogin ? "login-form display" : "login-form hide"}>
             <h1>Login</h1>

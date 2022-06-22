@@ -36,8 +36,9 @@ function Header(props){
    
    return  <header>
        <a href="" target="_blank"><img className="logo" src={logo} alt="raiz logo"/></a>
-       <img onClick={()=> props.goToAccount()} className={props.page === "home" ?"icon avatar display": "icon account-icon hide" } src={image} alt="Your account" />
-       <img className="icon menu-icon" src={menu} onClick={props.toggleNavBar} alt="Menu"/>
+       {/* <img onClick={()=> props.goToAccount()} className={props.page === "home" ?"icon avatar display": "icon account-icon hide" } src={image} alt="Your account" /> */}
+       <img className="icon menu-icon" src={image} onClick={props.toggleNavBar} alt="Menu"/>
+    
     </header>
 }
 
