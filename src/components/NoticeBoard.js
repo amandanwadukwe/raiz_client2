@@ -19,7 +19,7 @@ function NoticeBoard(props) {
     const [play] = useSound(success);
   
     useEffect(()=>{
-        axios.get("http://localhost:5000/notice")
+        axios.get("https://raiz-server2.herokuapp.com/notice")
         .then(res => setNotices(res.data))
         .catch(err => setNoticesError("There has been an error with loading the notices"))
     }, [referenceNumber])
@@ -29,7 +29,7 @@ function NoticeBoard(props) {
         e.preventDefault();
 
         axios
-            .post("http://localhost:5000/notice", {
+            .post("https://raiz-server2.herokuapp.com/notice", {
                 "subject": subject,
                 "message": message,
                 "date": date,
@@ -50,7 +50,7 @@ function NoticeBoard(props) {
     }
 
     function deleteNotice(id) {
-        axios.delete(`http://localhost:5000/notice/${id}`)
+        axios.delete(`https://raiz-server2.herokuapp.com/notice/${id}`)
         .then(res => console.log(res))
         .catch(err => console.log(err))
     }
@@ -71,7 +71,7 @@ function NoticeBoard(props) {
                 <ul className="notice-list">
                     {
                         notices.map((notice, index) => {
-                            return (<li className = {index >= referenceNumber && index <referenceNumber+3 ? "display" : "hide"}>
+                            return (<li className = {index >= referenceNumber && index <referenceNumber+2 ? "display" : "hide"}>
                                 <div className="notice">
                                     <h2>{notice.subject}</h2>
                                     <p>{notice.message}</p>
@@ -93,15 +93,15 @@ function NoticeBoard(props) {
                         if(referenceNumber <= 0 ){
                             setReferenceNumber(0)
                         } else{
-                        setReferenceNumber(referenceNumber - 3)
+                        setReferenceNumber(referenceNumber - 2)
                         }
                         }}>Previous notices</button>
                     <button type="button" onClick={()=>{
                         console.log("reference", referenceNumber)
-                        if(referenceNumber >= notices.length - 3){
-                            setReferenceNumber(notices.length - 3)
+                        if(referenceNumber >= notices.length - 2){
+                            setReferenceNumber(notices.length - 2)
                         } else{
-                        setReferenceNumber(referenceNumber + 3)
+                        setReferenceNumber(referenceNumber + 2)
                         }
                         }}>More current notices</button>
                 </div>

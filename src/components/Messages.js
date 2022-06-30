@@ -12,7 +12,7 @@ function Messages(props){
     const [messageToBeSent, setMessageToBeSent] = useState("");
 
 
-    axios.get(`http://localhost:5000/user/${props.email}`)
+    axios.get(`https://raiz-server2.herokuapp.com/user/${props.email}`)
     .then(res => {
         let recipients = [];
         res.data[0].messages.map(message => recipients.push(message.sendersName));
@@ -23,7 +23,7 @@ function Messages(props){
 
 
 
-    axios.get(`http://localhost:5000/user`)
+    axios.get(`https://raiz-server2.herokuapp.com/user`)
     .then(res => {
         res.data.map(user => {
             if (`${user.firstName} ${user.lastName}` === activeRecipient){
@@ -34,7 +34,7 @@ function Messages(props){
     .catch(err => console.log(err))
 
     function sendMessage(){
-        axios.put(`http://localhost:5000/message`, {
+        axios.put(`https://raiz-server2.herokuapp.com/message`, {
             "messageObject": {
                 "sendersName":`${props.firstName} ${props.lastName}`,
                 "message":messageToBeSent,
@@ -51,7 +51,7 @@ function Messages(props){
     }
 
     function readMessages(){
-        axios.put(`http://localhost:5000/view_message`, {
+        axios.put(`https://raiz-server2.herokuapp.com/view_message`, {
             "email": props.email,
             "sendersEmail": activeRecipientEmail        
         })

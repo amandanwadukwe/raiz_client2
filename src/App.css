@@ -36,6 +36,12 @@ input{
   /* Fix this:
   box-shadow: inset 2px 4px rgba(0,0,0,0.2); */
   margin-bottom:.6rem;
+  outline:none;
+}
+form label{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 select{
   width: 196px;
@@ -47,6 +53,8 @@ select{
   /* Fix this:
   box-shadow: inset 2px 4px rgba(0,0,0,0.2); */
   margin-bottom:.6rem;
+
+  outline:none;
 }
 textarea{
   width:85%;
@@ -57,6 +65,7 @@ textarea{
   /* Fix this:
   box-shadow: inset 2px 4px rgba(0,0,0,0.2); */
   margin-bottom:.6rem;
+  outline:none;
 }
 form{
   text-align: left;
@@ -102,14 +111,41 @@ form{
   padding:2rem 0;
 }
 .primary-navigation{
-  /* position:absolute;
-  left:100vw;
-  top:0; */
+  width:100vw;
 }
+
+.primary-navigation ul{
+  padding:2rem 0;
+  background-color: rgba(0, 0, 0,0.4);
+}
+
+.primary-navigation ul li{
+  width:70%;
+  margin-left:auto;
+  margin-right:auto;
+  padding:.6rem 0;
+  color:#ffffff;
+  text-align:center;
+  margin-top:.3rem;
+  font-size:1rem;
+  list-style:none;
+  background-color: #000000;
+  border:1px solid #1bae33;
+  border-radius:100vmax;
+}
+
+.primary-navigation ul li:hover{
+  box-shadow:3px 1px 30px rgba(255,255,255, 0.3);
+
+background-image: linear-gradient(45deg, #1bae33 5%, green 80%);
+transition:all .2s cubic-bezier(0.56, 0.2, 1, 1);
+}
+
 /* ----------------------Header----------------------------------------------- */
 header{
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding:1rem;
   background-color: #ffffff;
 }
@@ -191,18 +227,21 @@ header{
 }
 
 /* ----------------------Notices--------------------------------------------------------------- */
-.notice-list{
+.notice-list, .community-container-list {
   padding:0;
   width:80%;
   margin:0 auto;
   display: flex;
+
+  flex-wrap:wrap;
   flex-direction:column;
+  align-items: center;
 }
-.notice-list li{
+.notice-list li, .community-container-list li{
   list-style:none;
   margin:1rem 0;
 }
-.notice{
+.notice, .community-container-list li{
   max-width:270px;
   display:flex;
   flex-direction:column;
@@ -316,8 +355,14 @@ left:0;
   color:#ffffff;
   padding:1rem;
 }
+.popup-content{
+  margin:0 auto;
+}
+.popup-content form{
+  margin-top:2rem;
+}
 
-.popup-content button{
+.popup-close-btn{
   background-color:#fff;
    border:1px solid #000;
    width:48px;
@@ -327,16 +372,21 @@ left:0;
     justify-content:center;
      align-items:center;
 }
+.popup-close-btn:hover{
+  transform:scale(1.1);
+  border:1px solid #1bae33;
+  transition: all .2s linear;
+}
 .success-image{
   width:100px;
   height:100px;
 }
 /* ----------------------Regitstrastion requests--------------------------------- */
-.registration-request-list, .community-container-list{
+.registration-request-list{
   padding:0;
 }
 
-.registration-request-list li, .community-container-list li{
+.registration-request-list li{
   width:80%;
   margin:0 auto;
   list-style:none;
@@ -380,6 +430,10 @@ left:0;
   .error-message, .warning, .note{
     width:45vw;
   }
+  .popup-content{
+    width:60%;
+
+  }
   header{
       width:90vw;
       margin:0 auto;
@@ -394,6 +448,9 @@ left:0;
     justify-content: center;
     margin-top:6rem;
   }
+  .primary-navigation{
+    width:50vw;
+  }
  /*----------------------Login and registration----------------------------------------------- */
   .login-and-registration-containeer, .account-container{
       width:60vw;
@@ -407,11 +464,11 @@ left:0;
     margin: 0 auto;
   }
   /*----------------------Home----------------------------------------------- */
-  .notice-list{width:60%;
+  .notice-list, .community-container-list{width:60%;
       flex-direction:row;
       justify-content: space-around;
   }
-  .notice{
+  .notice , .community-container-list li{
       width:300px;
   }
   .policies{

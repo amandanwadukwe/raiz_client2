@@ -25,7 +25,7 @@ function Header(props){
         image = wormy5
     }
 
-    axios.get(`http://localhost:5000/user/${props.email}`)
+    axios.get(`https://raiz-server2.herokuapp.com/user/${props.email}`)
     .then(res => {
         console.log(res.data)
         setAvatar(res.data[0].avatar)
@@ -37,7 +37,7 @@ function Header(props){
    return  <header>
        <a href="" target="_blank"><img className="logo" src={logo} alt="raiz logo"/></a>
        {/* <img onClick={()=> props.goToAccount()} className={props.page === "home" ?"icon avatar display": "icon account-icon hide" } src={image} alt="Your account" /> */}
-       <img className="icon menu-icon" src={image} onClick={props.toggleNavBar} alt="Menu"/>
+       <img className="avatar icon" src={image} onClick={props.lever} alt="Menu"/>
     
     </header>
 }

@@ -9,7 +9,7 @@ export default function Forum(props){
     const [repliedMessageObject, setRepliedMessageObject] = useState({});
 
     useEffect(()=>{
-        axios.get("http://localhost:5000/forum")
+        axios.get("https://raiz-server2.herokuapp.com/forum")
     .then(res => setAllMessageObjects(res.data))
     .catch(err => console.log(err))
     
@@ -20,7 +20,7 @@ export default function Forum(props){
     function sendMessage(){
          console.log(message)
 
-        axios.post("http://localhost:5000/forum",{
+        axios.post("https://raiz-server2.herokuapp.com/forum",{
             sender:`${props.firstName} ${props.lastName}`,
             sendersEmail:props.email,
             recipientMessageId:recipientMessageId,

@@ -23,7 +23,7 @@ function Community(props) {
     const [play] = useSound(success);
 
     useEffect(()=> {
-    axios.get(`http://localhost:5000/user/`)
+    axios.get(`https://raiz-server2.herokuapp.com/user/`)
         .then(res => {
             //Is the fact that it keep re-rendering as shown by this console.log statement  a problem?
             setCommunity(res.data.filter(user => user.role !== "Pending..."));
@@ -33,7 +33,7 @@ function Community(props) {
         .catch(err => setCommunityError("There has been an error please try again or contact us"));
     }, [])
     function deleteMember(email) {
-        axios.delete(`http://localhost:5000/user/${email}`)
+        axios.delete(`https://raiz-server2.herokuapp.com/user/${email}`)
             .then(res => {
                 //console.log(res);
                 //You might need to resent community error but if it is reloaded you might not need to. What is best?
@@ -43,7 +43,7 @@ function Community(props) {
 
     function sendMessage(email){
         if (message.length > 0){
-        axios.put(`http://localhost:5000/message`, {
+        axios.put(`https://raiz-server2.herokuapp.com/message`, {
             "messageObject": {
                 "sendersName":`${props.firstName} ${props.lastName}`,
                 "message":message,

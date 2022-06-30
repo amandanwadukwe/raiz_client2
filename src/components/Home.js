@@ -23,6 +23,7 @@ import wormy3 from "../resources/wormy3.png";
 import wormy4 from "../resources/wormy4.png";
 import wormy5 from "../resources/wormy5.png";
 import Footer from "./Footer";
+import { Transition } from 'react-transition-group';
 
 function Home() {
     let { email } = useParams();
@@ -44,6 +45,7 @@ function Home() {
     const [isResourceOpen, setIsResourceOpen] = useState(false)
     const [play] = useSound(success);
     const [avatar, setAvatar] = useState("");
+    const [inProp, setInProp] = useState(false);
 
         let image = "";
         if (avatar === "../resources/wormy1.png"){
@@ -58,7 +60,7 @@ function Home() {
             image = wormy5
         }
     
-        axios.get(`http://localhost:5000/user/${email}`)
+        axios.get(`https://raiz-server2.herokuapp.com/user/${email}`)
         .then(res => {
             setAvatar(res.data[0].avatar)
             console.log(res.data[0])
@@ -67,7 +69,7 @@ function Home() {
 
     useEffect(() => {
         console.log("I have been triggered")
-        axios.get(`http://localhost:5000/content`)
+        axios.get(`https://raiz-server2.herokuapp.com/content`)
             .then(res => {
                 setExistingResource(res.data);
             })
@@ -76,7 +78,7 @@ function Home() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/user/${email}`)
+        axios.get(`https://raiz-server2.herokuapp.com/user/${email}`)
             .then(res => {
 
                 setRole(res.data[0].role);
@@ -86,6 +88,40 @@ function Home() {
             })
             .catch(err => console.log(err));
     }, [email])
+
+    const duration = 200;
+
+    const defaultStyle = {
+        transition: `color ${duration}ms ease-in-out`,
+        color: 'black',
+        PointerEvent:"none",
+        position:"fixed",
+        top:"13vh",
+        zIndex:100
+    };
+
+    const transitionStyles = {
+        entering: {
+            transform: 'translateX(-100vw)',
+            opacity: 0,
+        },
+        entered: {
+            opacity: 1,
+            transform: 'translateX(-0px)',
+
+            transition: `all ${duration}ms cubic-bezier(1, -0.59, 0, 1.43)`,
+        },
+        exiting: {
+            transform: 'translateX(10px)',
+        },
+        exited: {
+            transform: 'translateX(-100vw)',
+            opacity: 0,
+            transition: `all ${duration}ms cubic-bezier(1, -0.59, 0, 1.43)`,
+        },
+
+       
+    };
 
 
     const togglePopup = () => {
@@ -108,40 +144,62 @@ function Home() {
     function toggleTheNavBar() {
         setToggleNavBar(!toggleNavBar);
     }
+
+    function inpropLever(){
+        setInProp(!inProp)
+    }
     return (
         <div>
             {/* <p>You are in the home page of the backend.</p> */}
-            <Header page={"home"} email={email} toggleNavBar={toggleTheNavBar} goToAccount={goToAccount} />
+            <Header page={"home"} lever={inpropLever} email={email} toggleNavBar={toggleTheNavBar} goToAccount={goToAccount} />
+            <Transition in={inProp} timeout={0}>
+                    {(state) => (
+                        <div
+                            style={{
+                                ...defaultStyle,
+                                ...transitionStyles[state],
+                            }}
+                        >
             <nav className={!toggleNavBar ? "primary-navigation display" : "primary-navigation hide"}>
                 <ul>
                     <li onClick={() => {
                         setActiveNavLink("My Account");
+                        inpropLever();
                     }}><img className="avatar" src={image} alt="profile"/></li>
                     <li onClick={() => {
                         setActiveNavLink("Home");
+                        inpropLever();
                     }}>Home</li>
-                    <li onCli
+                    {/* <li onCli
                     ck={() => {
                         setActiveNavLink("Notices");
-                    }}>Notices</li>
+                    }}>Notices</li> */}
 
                     <li className={role === "Admin" ? "display" : "hide"} onClick={() => {
                         setActiveNavLink("Requests");
+                        inpropLever();
                     }}>Requests</li>
                     <li onClick={() => {
                         setActiveNavLink("Community");
+                        inpropLever();
                     }}>Community</li>
                     <li onClick={() => {
                         setActiveNavLink("Messages");
+                        inpropLever();
                     }}>Messages</li>
                     <li onClick={() => {
                         setActiveNavLink("Resources");
+                        inpropLever();
                     }}>Resources</li>
                     <li onClick={() => {
                         setActiveNavLink("Forum");
+                        inpropLever();
                     }}>Forum</li>
                 </ul>
             </nav>
+            </div>
+                    )}
+                </Transition>
             <div className="home-container">
             <div className="first-background">
                 <div className="second-background">

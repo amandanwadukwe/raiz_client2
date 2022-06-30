@@ -17,7 +17,7 @@ export default function Resource(props) {
 
   function saveDocument(){
     if(title !== "" && html !== ""){
-      axios.put(`http://localhost:5000/content/${title}`, {
+      axios.put(`https://raiz-server2.herokuapp.com/content/${title}`, {
         "title":title,
         "html":html,
         "date": new Date()

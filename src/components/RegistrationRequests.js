@@ -8,7 +8,7 @@ function RegistrationRequests(props) {
     //The request the admin is currently taking action on 
     //const [currentRequest, setCurrentRequest] = useState("");
 
-    axios.get(`http://localhost:5000/user/`)
+    axios.get(`https://raiz-server2.herokuapp.com/user/`)
         .then(res => {
             setRequests(res.data.filter(user => user.role === "Pending..."));
         })
@@ -16,14 +16,14 @@ function RegistrationRequests(props) {
 
     function acceptRequest(email) {
 
-        axios.put(`http://localhost:5000/user/${email}`)
+        axios.put(`https://raiz-server2.herokuapp.com/user/${email}`)
             .then(res => console.log(res))
             .catch(err => setRequestError("There has been an error accepting this request"))
 
     }
 
     function deleteRequest(email) {
-        axios.delete(`http://localhost:5000/user/${email}`)
+        axios.delete(`https://raiz-server2.herokuapp.com/user/${email}`)
             .then(res => console.log(res))
             .catch(err => setRequestError("There has been an error declining this request"))
     }
@@ -41,7 +41,7 @@ function RegistrationRequests(props) {
                             // console.log("email:", typeof request.email);
                             // console.log(currentRequest);
                             acceptRequest(request.email);
-                            axios.post("http://localhost:5000/request_accepted", {
+                            axios.post("https://raiz-server2.herokuapp.com/request_accepted", {
                                     "email":request.email
                                 })
                                 .then(res=> console.log(res))
@@ -51,7 +51,7 @@ function RegistrationRequests(props) {
                             //console.log(currentRequest);
                         }} type="button">Accept</button> <button className="danger-btn" onClick={(e) => {
                             e.preventDefault();
-                            axios.post("http://localhost:5000/request_denied", {
+                            axios.post("https://raiz-server2.herokuapp.com/request_denied", {
                                     "email":request.email
                                 })
                                 .then(res=> console.log(res))

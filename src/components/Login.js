@@ -15,7 +15,7 @@ function Login(props){
         } else {
         e.preventDefault();
 
-        axios.post(`http://localhost:5000/user/${email}`, {
+        axios.post(`https://raiz-server2.herokuapp.com/user/${email}`, {
             "email": email,
             "password": password
         })

@@ -27,7 +27,7 @@ function Registration(props) {
         e.preventDefault();
         if (confirmPassword === password) {
             console.log("Passwords match");
-            axios.get(`http://localhost:5000/user/${email}`)
+            axios.get(`https://raiz-server2.herokuapp.com/user/${email}`)
             .then(res => {
                 if (res.data.length == 0) {
                     //Remember to not go forward if the role is empty
@@ -35,7 +35,7 @@ function Registration(props) {
                         setSecretRequired(true);
                     } else if (role === "Volunteer") {
                         setSecretRequired(true);
-                        axios.post("http://localhost:5000/request_success", {
+                        axios.post("https://raiz-server2.herokuapp.com/request_success", {
                             "email": email
                         })
                             .then(res => {
@@ -67,11 +67,11 @@ function Registration(props) {
         e.preventDefault();
         //Is this supposed to be a get or a post, woman?
         if (role === "Admin") {
-            axios("http://localhost:5000/secret")
+            axios("https://raiz-server2.herokuapp.com/secret")
                 .then((response) => {
                     if (secret === response.data[0].secret) {
                         axios
-                            .post("http://localhost:5000/user", {
+                            .post("https://raiz-server2.herokuapp.com/user", {
                                 "firstName": "" + firstName + "",
                                 "lastName": lastName,
                                 "role": role,
@@ -93,11 +93,11 @@ function Registration(props) {
                 })
                 .catch(err => console.log(err));
         } else if (role === "Volunteer") {
-            axios("http://localhost:5000/secret")
+            axios("https://raiz-server2.herokuapp.com/secret")
                 .then((response) => {
                     if (secret === response.data[1].secret) {
                         axios
-                            .post("http://localhost:5000/user", {
+                            .post("https://raiz-server2.herokuapp.com/user", {
                                 "firstName": "" + firstName + "",
                                 "lastName": lastName,
                                 "role": "Pending...",

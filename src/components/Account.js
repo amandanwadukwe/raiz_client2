@@ -40,7 +40,7 @@ function Account(props) {
     }
     function changePassword() {
         setPopupMessage("Password Changed")
-        axios.put("http://localhost:5000/password", {
+        axios.put("https://raiz-server2.herokuapp.com/password", {
             "email": props.email,
             "newPassword": newPassword
         })
@@ -55,7 +55,7 @@ function Account(props) {
 
     function changeAvatar() {
         console.log(route)
-        axios.put("http://localhost:5000/avatar", {
+        axios.put("https://raiz-server2.herokuapp.com/avatar", {
             "email": props.email,
             "route": route
         })
@@ -64,7 +64,7 @@ function Account(props) {
             .catch(err => console.log(err))
 
     }
-    axios.get(`http://localhost:5000/user/${props.email}`)
+    axios.get(`https://raiz-server2.herokuapp.com/user/${props.email}`)
         .then(res => {
             setAvatar(res.data[0].avatar)
 
