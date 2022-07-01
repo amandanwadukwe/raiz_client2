@@ -22,7 +22,7 @@ function Login(props){
         .then(res => {
            
             
-            window.location.href = `http://localhost:3000/home/${email}`
+            window.location.href = `https://raiz-cms-client.netlify.app/home/${email}`
         })
         .catch(err => {
             if(err.response.data === undefined)

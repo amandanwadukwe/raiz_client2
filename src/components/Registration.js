@@ -82,7 +82,7 @@ function Registration(props) {
                             })
                             .then(res => {
                                 console.log(res);
-                                window.location.href = `http://localhost:3000/home/${email}`
+                                window.location.href = `https://raiz-cms-client.netlify.app/home/${email}`
                             })
                             .catch(err => {
                                 console.log(err);
@@ -109,7 +109,7 @@ function Registration(props) {
                             .then(res => {
                                 console.log(res);
                                 
-                                window.location.href = "http://localhost:3000/volunteer"
+                                window.location.href = "https://raiz-cms-client.netlify.app/volunteer"
                             })
                             .catch(err => {
                                 console.log(err)
