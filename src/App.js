@@ -13,7 +13,7 @@ function App() {
   const handleOnIdle = event => {
     console.log('user is idle', event)
     console.log('last active', getLastActiveTime())
-    window.location.href = "http://localhost:3000";
+    window.location.href = "https://raiz-cms-client.netlify.app/";
   }
 
   const handleOnActive = event => {

@@ -20,7 +20,7 @@ function Login(props){
             "password": password
         })
         .then(res => {
-           
+           console.log("I am excuting this function")
             
             window.location.href = `https://raiz-cms-client.netlify.app/home/${email}`
         })
