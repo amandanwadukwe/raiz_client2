@@ -77,10 +77,16 @@ function Messages(props){
                         if(messageObject.sendersName === recipient){
         
                            return <div className="message-to-me">{messageObject.message}</div>
-                        } else if(messageObject.from === props.email && messageObject.to === activeRecipientEmail ){
+                        } 
+                    })}
+                    <div className="messages-from-me-container">
+                    {allMessageObjects.map(messageObject => {
+                        
+                        if(messageObject.from === props.email && messageObject.to === activeRecipientEmail ){
                             return <div className="message-from-me">{messageObject.message}</div>
                         }
                     })}
+                    </div>
                 </div>
                 <div className="new-message-form">
                     <form>

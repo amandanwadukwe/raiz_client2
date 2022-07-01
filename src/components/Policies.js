@@ -1,24 +1,49 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Popup from "./Popup";
+import axios from "axios";
 
 export default function Policies(){
     const [isOpen, setIsOpen] = useState(false);
     const [policyTitle, setPolicyTitle] = useState("");
     const [policyContent, setPolicyContent] = useState("");
+    const [confidentialityPolicy, setConfidentialityPolicy] = useState("");
+    const [safeguardingPolicy, setSafeguardingPolicy] = useState("");
+    const [activePolicy, setActivePolicy] = useState("");
+    const [showPolicy, setShowPolicy] = useState(false);
+    const [showClosePolicyBtn, setShowClosePolicyBtn] = useState(false);
 
     function showConfirmation() {
         setIsOpen(false);
         
     }
+    useEffect(()=> {
+        axios.get(`https://raiz-server2.herokuapp.com/content`)
+        .then(res => {
+            setConfidentialityPolicy(res.data.filter(datum => datum.title === "Confidentiality Policy")[0]);
+        })
+        .catch(err => console.log(err));
+    }, [])
 
-    return <div className="policies">
+    useEffect(()=> {
+        axios.get(`https://raiz-server2.herokuapp.com/content`)
+        .then(res => {
+            setSafeguardingPolicy(res.data.filter(datum => datum.title === "Safeguarding Policy")[0]);
+        })
+        .catch(err => console.log(err));
+    }, [])
+             
+    
+    
+
+    return <div className="policies-container">
+        <div    className= "policies">
     <div>
         <h3>Confidentiality Policy</h3>
         <div>
             <button type="button" onClick={()=>{
-                setPolicyTitle("Confidentiality Policy");
-                setPolicyContent("<b>This is the confidentiality content</b>");
-                setIsOpen(true);
+                setActivePolicy("confidentiality");
+                setShowPolicy(true);
+                setShowClosePolicyBtn(true);
             }}>View</button>
            
         </div>
@@ -27,23 +52,20 @@ export default function Policies(){
         <h3>Safeguarding Policy</h3>
         <div>
             <button type="button" onClick={()=>{
-                setPolicyTitle("Safeguarding Policy");
-                setPolicyContent("<b>This is the safeguarding content</b>");
-                setIsOpen(true);
+                setActivePolicy("safeguarding");
+                setShowPolicy(true);
+                setShowClosePolicyBtn(true);
             }}>View</button>
 
 
         </div>
     </div>
-    {isOpen && <Popup
-          content={<div className="popup-content">
-            <b>{policyTitle}</b>
-            <div dangerouslySetInnerHTML={{ __html: policyContent }}></div>
-            <button type="button" onClick={showConfirmation}>Close</button>
-            
-        
-          </div>}
-          handleClose={showConfirmation}
-        />}
+    </div>
+    <div className={showPolicy ? "display" : "hide"} dangerouslySetInnerHTML={{ __html: activePolicy=== "confidentiality" ? confidentialityPolicy.html : safeguardingPolicy.html }}></div>
+    <button type="button" className={showClosePolicyBtn ? "display" : "hide"} onClick={()=> {
+        setShowPolicy(false);
+        setShowClosePolicyBtn(false);
+    }}>Close</button>
+ 
 </div> 
 }

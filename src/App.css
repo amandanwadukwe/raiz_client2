@@ -302,6 +302,11 @@ header{
   background-color:#000000;
   color:#ffffff;
 }
+.messages-from-me-container{
+  display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
 .message-from-me{
   width:fit-content;
   display: block;
