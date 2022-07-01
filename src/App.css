@@ -406,6 +406,7 @@ left:0;
 }
 .footer{
   margin-top:3rem;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 .secret-header{
   background-color: #ffffff;
