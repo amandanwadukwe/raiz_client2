@@ -3,19 +3,14 @@ import Popup from "./Popup";
 import axios from "axios";
 
 export default function Policies(){
-    const [isOpen, setIsOpen] = useState(false);
-    const [policyTitle, setPolicyTitle] = useState("");
-    const [policyContent, setPolicyContent] = useState("");
+    
     const [confidentialityPolicy, setConfidentialityPolicy] = useState("");
     const [safeguardingPolicy, setSafeguardingPolicy] = useState("");
     const [activePolicy, setActivePolicy] = useState("");
     const [showPolicy, setShowPolicy] = useState(false);
     const [showClosePolicyBtn, setShowClosePolicyBtn] = useState(false);
 
-    function showConfirmation() {
-        setIsOpen(false);
-        
-    }
+
     useEffect(()=> {
         axios.get(`https://raiz-server2.herokuapp.com/content`)
         .then(res => {

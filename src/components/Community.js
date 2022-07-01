@@ -110,7 +110,7 @@ function Community(props) {
             </ul>
             {isOpen && <Popup
           content={<div className="popup-content">
-            <b>Message sent!</b>
+            <p><b>Message sent!</b></p>
             
             <img className="success-image" src={tick} alt="successful deletion"/>
           </div>}

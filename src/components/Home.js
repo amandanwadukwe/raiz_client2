@@ -277,7 +277,7 @@ function Home() {
                     content={
                     
                     <div className="popup-content">
-                        <b>Resource updated!</b>
+                        <p><b>Resource updated!</b></p>
 
                         <img className="success-image" src={tick} alt="successful deletion" />
                     </div>}

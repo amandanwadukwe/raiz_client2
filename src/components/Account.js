@@ -183,7 +183,7 @@ function Account(props) {
                 <button type="button" onClick={() => window.location.href = "http://localhost:3000"}>Log out</button>
                 {isOpen && <Popup
                     content={<div className="popup-content">
-                        <b>{popupMessage}</b>
+                        <p><b>{popupMessage}</b></p>
 
                         <img className="success-image" src={tick} alt="successful deletion" />
                     </div>}
