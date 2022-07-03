@@ -11,6 +11,7 @@ import wormy5 from "../resources/wormy5.png";
 
 function Header(props){
     const [avatar, setAvatar] = useState("");
+    const [error, setError] = useState("")
 
     let image = "";
     if (avatar === "../resources/wormy1.png"){
@@ -27,11 +28,10 @@ function Header(props){
 
     axios.get(`https://raiz-server2.herokuapp.com/user/${props.email}`)
     .then(res => {
-        console.log(res.data)
         setAvatar(res.data[0].avatar)
        
     })
-    .catch(err => console.log(err));
+    .catch(err => setError(err));
 
    
    return  <header>

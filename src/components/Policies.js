@@ -32,7 +32,7 @@ export default function Policies(){
 
     return <div className="policies-container">
         <div    className= "policies">
-    <div>
+    <div className="policy">
         <h3>Confidentiality Policy</h3>
         <div>
             <button type="button" onClick={()=>{
@@ -43,7 +43,7 @@ export default function Policies(){
            
         </div>
     </div>
-    <div>
+    <div className="policy">
         <h3>Safeguarding Policy</h3>
         <div>
             <button type="button" onClick={()=>{
@@ -56,7 +56,7 @@ export default function Policies(){
         </div>
     </div>
     </div>
-    <div className={showPolicy ? "display" : "hide"} dangerouslySetInnerHTML={{ __html: activePolicy=== "confidentiality" ? confidentialityPolicy.html : safeguardingPolicy.html }}></div>
+    <div className={showPolicy ? "policy-content display" : "policy-content hide"} dangerouslySetInnerHTML={{ __html: activePolicy=== "confidentiality" ? confidentialityPolicy.html : safeguardingPolicy.html }}></div>
     <button type="button" className={showClosePolicyBtn ? "display" : "hide"} onClick={()=> {
         setShowPolicy(false);
         setShowClosePolicyBtn(false);

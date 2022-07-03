@@ -42,6 +42,14 @@ function Community(props) {
     }
 
     function sendMessage(email){
+        // console.log("Message object from community: ", {
+        //     "sendersName":`${props.firstName} ${props.lastName}`,
+        //     "message":message,
+        //     "from":props.email,
+        //     "to":email,
+        //     "date": new Date(),
+        //     "read":false
+        // })
         if (message.length > 0){
         axios.put(`https://raiz-server2.herokuapp.com/message`, {
             "messageObject": {
@@ -61,7 +69,8 @@ function Community(props) {
         setSendingMessage(false);
         showConfirmation();
         } else {
-            setTimeout(()=>setMessageError("Empty message"), 5000);
+            setMessageError("Empty message")
+            setTimeout(()=>setMessageError(""), 5000);
             
         }
     }

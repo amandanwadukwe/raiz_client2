@@ -14,9 +14,10 @@
   height: 45px;
 }
 button{
-  width:90px;
+  width:fit-content;
   height:48px;
-  margin:.5rem 0;
+  margin:.5rem;
+  padding: 16px;
   border:1px solid #ffffff;
   background-color:#0d5319;
   color:#ffffff;
@@ -96,7 +97,8 @@ form{
 .info{
   margin:1rem auto;
   width:80%;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0,0,0,0.8);
+  color:#ffffff;
   padding:1rem;
   
 }
@@ -406,7 +408,8 @@ left:0;
 }
 .footer{
   margin-top:3rem;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
+  color:#ffffff;
 }
 .secret-header{
   background-color: #ffffff;
@@ -478,9 +481,19 @@ left:0;
       width:300px;
   }
   .policies{
-    width:50vw;
+    width:100vw;
     flex-direction: row;
     justify-content: space-around;
+  }
+  .policy{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+  }
+  .policy-content{
+    width:80vw;
+    margin:0 auto;
+    margin-top:5rem;
   }
   .help{
     width:60px;

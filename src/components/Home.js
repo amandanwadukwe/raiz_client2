@@ -63,7 +63,6 @@ function Home() {
         axios.get(`https://raiz-server2.herokuapp.com/user/${email}`)
         .then(res => {
             setAvatar(res.data[0].avatar)
-            console.log(res.data[0])
         })
         .catch(err => console.log(err));
 
@@ -292,10 +291,19 @@ function Home() {
             </div> */}
             
             <Help/>
-            <Footer />
+            
         </div>
         </div>
         </div>
+        <div className={activeNavLink === "Home" || activeNavLink === "" ? "info display" : "info hide"}>
+                <p><strong>RAIS</strong> is a local charity which provides advocacy, information and support services to refugees and asylum seekers living in Lancaster and Morecambe. All of our volunteers have experience of helping asylum seekers and refugees in our city, and are committed to welcoming and supporting them.</p>
+            </div>
+            <div className={activeNavLink === "Home" || activeNavLink === "" ? "info display" : "info hide"}>
+                <p>We provide information on matters including housing benefits, employment, education, family reunion and applying for indefinite leave to remain. We well refer of sighpost to other professsional agencies for advice where appropriate.</p>
+                <p>We also provide advocacy for refugees in dealing iwth various agencies and organisations. Our volunteers can accompany people to appointments, and help with form-filling, application etc.</p>
+                <p><strong>All enquires and any information given to us are treated in the strictest confidence. We never pass information to other people or agencies without the enquirer's permission.</strong></p>
+            </div>
+        <Footer />
         </div>
     )
 }

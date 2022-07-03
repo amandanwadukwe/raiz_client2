@@ -18,7 +18,7 @@ export default function Forum(props){
 
 
     function sendMessage(){
-         console.log(message)
+        //  console.log(message)
 
         axios.post("https://raiz-server2.herokuapp.com/forum",{
             sender:`${props.firstName} ${props.lastName}`,
@@ -45,7 +45,7 @@ export default function Forum(props){
                 if (recipientMessageId !== "Everyone"){
                     setRepliedMessageObject( allMessageObjects.filter(message => message._id === String(recipientMessageId)))
                 }
-                console.log("repliedMessageObject", repliedMessageObject)
+                // console.log("repliedMessageObject", repliedMessageObject)
                 return <div onCliick={()=>setRecipientMessageId(messageObject._id)}>
                     <div><h5>{repliedMessageObject.sender}</h5><h5>{repliedMessageObject.message}</h5></div>
                     <h3>{messageObject.sender}</h3>

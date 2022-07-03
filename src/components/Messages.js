@@ -10,6 +10,7 @@ function Messages(props){
     const [activeRecipientEmail, setActiveRecipientEmail] = useState("");
     const [allMessageObjects, setAllMessageObjects] = useState([{"from":"rachel@gmail.com", "message":"hello", "to":"amanda@gmail.com", "read":false,"date":"","sendersName":"Hello Hi"}]);
     const [messageToBeSent, setMessageToBeSent] = useState("");
+    const [messageClass, setMessageClass] = useState(true);
 
 
     axios.get(`https://raiz-server2.herokuapp.com/user/${props.email}`)
@@ -34,6 +35,18 @@ function Messages(props){
     .catch(err => console.log(err))
 
     function sendMessage(){
+
+        // console.log("Direct message object: ", {
+        //     "sendersName":`${props.firstName} ${props.lastName}`,
+        //     "message":messageToBeSent,
+        //     "from":props.email,
+        //     "to":activeRecipientEmail,
+        //     "date": new Date(),
+        //     "read":false
+        // })
+
+       
+
         axios.put(`https://raiz-server2.herokuapp.com/message`, {
             "messageObject": {
                 "sendersName":`${props.firstName} ${props.lastName}`,
@@ -74,19 +87,23 @@ function Messages(props){
                     
                     {allMessageObjects.map(messageObject => {
                         
-                        if(messageObject.sendersName === recipient){
-        
-                           return <div className="message-to-me">{messageObject.message}</div>
-                        } 
+                        if(messageObject.sendersName === recipient || (messageObject.from === props.email && messageObject.to === activeRecipientEmail)  ){
+
+                        
+                            let messageDetails = true;
+                            messageDetails = messageObject.sendersName === recipient
+                    
+                        return <div className={ messageDetails ? "message-to-me" : "message-from-me"}>{messageObject.message}</div>
+                        }
                     })}
-                    <div className="messages-from-me-container">
+                    {/* <div className="messages-from-me-container">
                     {allMessageObjects.map(messageObject => {
                         
-                        if(messageObject.from === props.email && messageObject.to === activeRecipientEmail ){
+                        {
                             return <div className="message-from-me">{messageObject.message}</div>
                         }
                     })}
-                    </div>
+                    </div> */}
                 </div>
                 <div className="new-message-form">
                     <form>
