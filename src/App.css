@@ -1,6 +1,6 @@
 .App{
   font-weight: lighter;
-  font-size:1.2rem;
+  font-size:1.1rem;
 }
 .display{
   display: block;
@@ -18,12 +18,17 @@ button{
   width:fit-content;
   height:48px;
   margin:.5rem;
-  padding: 16px;
-  border:1px solid #ffffff;
+  padding: 8px 16px;
+  border:1px solid #1bae33;
   font-size:1.2rem;
-  background-color:#0d5319;
+  background-color:#000000;
   color:#ffffff;
   border-radius:4px;
+}
+button:hover{
+  border-color: #ffffff;
+  background-color: #0d5319;
+  transition:all .2s linear;
 }
 
 span, h1{
@@ -286,6 +291,13 @@ header{
   cursor:default;
   transition:all .2s linear;
 }
+.resource-title{
+  width: 80%;
+  margin: 1rem auto;
+  text-align: center;
+  background-color: rgba(0,0,0,0.4);
+  padding: 1rem 0;
+}
 /* .resource-content{
   width:90vw;
   margin:0 auto;
@@ -332,6 +344,8 @@ header{
   display: flex;
   align-items: center;
   /* justify-content: center; */
+
+  background-color: rgba(0, 0, 0, 0.4);
   width: 80vw;
   cursor:default;
   text-decoration: underline;
@@ -432,6 +446,9 @@ left:0;
   transition:all .2s linear;
 }
 @media screen and (min-width:768px){
+  .App{
+    font-size:1rem;
+  }
   label{
     width:90%;
     margin:0 auto;
@@ -446,7 +463,6 @@ left:0;
   }
   .error-message, .warning, .note{
     width:90%;
-    margin:0 auto;
   }
   .popup-content{
     width:60%;
@@ -465,6 +481,9 @@ left:0;
     align-items:center;
     justify-content: center;
     margin-top:6rem;
+  }
+  .message-heading{
+    width:100%;
   }
   .primary-navigation{
     width:50vw;

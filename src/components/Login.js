@@ -20,12 +20,11 @@ function Login(props){
             "password": password
         })
         .then(res => {
-           console.log("I am excuting this function")
+           console.log(res)
             
             window.location.href = `https://raiz-cms-client.netlify.app/home/${email}`
         })
         .catch(err => {
-            if(err.response.data === undefined)
                 setErrorMessage("This account does not exist")});
     }
         
