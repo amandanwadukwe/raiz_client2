@@ -214,7 +214,7 @@ function Home() {
             <Messages email={email} activeLink={activeNavLink} firstName={name} lastName={lastName} />
             {/* Pass in user email for automatic reload */}
             <div className={activeNavLink === "Resources" ? "resources-container display" : "resources-container hide"}>
-                <button type="button" onClick={createNewResource}>Add new resource</button>
+                
                 <div>
                     <div>
                         <label>Search:<input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search" /></label>
@@ -267,7 +267,7 @@ function Home() {
                     })}
                 </div>
 
-
+                <button type="button" onClick={createNewResource}>Add new resource</button>
                 <Resource togglePopup={togglePopup} refresh={refreshResponse} activated={isNewResourceActivated} title={title} content={content} handleSave={() => setIsNewResourceActivated(false)} />
 
             </div>

@@ -33,6 +33,7 @@ export default function Resource(props) {
   return (
     <div className={props.activated  ? "display" : "hide"}>
       <span className={errorMessage.length > 0 ? "error-message display" : "error-message hide"}>{errorMessage}</span>
+      <div  style={{backgroundColor:"#ffffff", color:"black",padding:"1rem"}}>
         <div>
             <span className="warning">You can only edit this once</span> <br/>
             <label>Title:<input type="text" placeholder={title} value={title} onChange={(e) => setTitle(e.target.value)} /></label>
@@ -48,6 +49,7 @@ export default function Resource(props) {
         props.refresh();
         props.togglePopup();
         }}>Save</button>
+        </div>
     </div>
   );
 }
