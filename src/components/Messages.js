@@ -93,7 +93,7 @@ function Messages(props){
                             let messageDetails = true;
                             messageDetails = messageObject.sendersName === recipient
                     
-                        return <div className={ messageDetails ? "message-to-me" : "message-from-me"}>{messageObject.message}</div>
+                        return <div className="actual-message"><div className={ messageDetails ? "message-to-me" : "message-from-me"}>{messageObject.message}</div></div>
                         }
                     })}
                     {/* <div className="messages-from-me-container">
