@@ -180,7 +180,7 @@ function Account(props) {
                     <label>New password:<input type="text" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} /></label>
                     <button type="button" onClick={changePassword}>Change</button>
                 </div>
-                <button type="button" onClick={() => window.location.href = "http://localhost:3000"}>Log out</button>
+                <button type="button" onClick={() => window.location.href = "https://raiz-cms-client.netlify.app"}>Log out</button>
                 {isOpen && <Popup
                     content={<div className="popup-content">
                         <p><b>{popupMessage}</b></p>
